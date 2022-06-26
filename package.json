@@ -4,6 +4,8 @@
   "description": "AZ Quotes scrapper",
   "main": "index.ts",
   "scripts": {
+    "start": "nodemon src/index.ts",
+    "start:ts": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,5 +16,15 @@
     "axios"
   ],
   "author": "alexdevero",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.27.2",
+    "cheerio": "1.0.0-rc.11"
+  },
+  "devDependencies": {
+    "@types/node": "18.0.0",
+    "nodemon": "2.0.18",
+    "ts-node": "10.8.1",
+    "typescript": "4.7.4"
+  }
 }
