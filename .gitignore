@@ -1,4 +1,3 @@
-
 # Logs
 logs
 *.log
@@ -36,6 +35,9 @@ jspm_packages/
 
 # TypeScript cache
 *.tsbuildinfo
+
+# TypeScript build output
+build/
 
 # Optional npm cache directory
 .npm
