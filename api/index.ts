@@ -13,7 +13,7 @@ app.use(compression())
 app.get('/api', async (req: Request, res: Response) => {
   res.json({
     availableEndpoints: ['author-pagination'],
-    code: HttpCodes.BAD_REQUEST
+    code: HttpCodes.OK
   })
 })
 
