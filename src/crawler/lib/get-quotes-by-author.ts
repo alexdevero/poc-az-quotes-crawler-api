@@ -20,7 +20,12 @@ export const getQuotesByAuthor = async (author: string, page?: string) => {
 
     console.log(quotes)
 
-    return quotes
+    return {
+      quotes,
+      fnParams: {
+        url: [urls.quotesByAuthor, author, page]
+      }
+    }
   }
   catch (e) {
     console.error('error: ', e)
