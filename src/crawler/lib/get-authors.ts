@@ -1,8 +1,10 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-const url = 'https://www.azquotes.com/quotes/authors.html'
-const urlSingle = 'https://www.azquotes.com/quotes/authors/'
+import { urls } from '@data'
+
+const url = urls.authors
+const urlSingle = urls.authorSingle
 
 export type Author = {
   author: string;
@@ -61,6 +63,7 @@ export const getAuthors = async (authorStartingLetter?: string, page?: number) =
     })
 
     console.log(authorsData)
+
     return {
       authors: authorsData,
       pages,

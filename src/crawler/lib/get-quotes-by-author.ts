@@ -1,7 +1,9 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-const url = `https://www.azquotes.com/author/`
+import { urls } from '@data'
+
+const url = urls.quotesByAuthor
 
 export const getQuotesByAuthor = async (author?: string) => {
   try {
@@ -19,6 +21,8 @@ export const getQuotesByAuthor = async (author?: string) => {
     })
 
     console.log(quotes)
+
+    return quotes
   }
   catch (e) {
     console.error('error: ', e)
