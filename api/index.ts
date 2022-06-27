@@ -2,8 +2,13 @@ import express, { Request, Response } from 'express'
 import helmet from 'helmet'
 import compression from 'compression'
 
-import { getQuotesByAuthorPagination } from './../src/crawler'
+import { getQuotesByAuthorPagination, getQuotesByAuthor } from './../src/crawler'
 import { HttpCodes } from '../types'
+
+const errorResponse = {
+  message: 'Error: something unexpected happened',
+  code: HttpCodes.BAD_REQUEST
+}
 
 const app = express()
 app.use(helmet())
@@ -22,10 +27,7 @@ app.get('/api/author-pagination', async (req: Request, res: Response) => {
     const { query } = req
 
     if (!query.author || typeof query.author !== 'string') {
-      res.json({
-        message: 'Error: Author not provided in Query params',
-        code: HttpCodes.BAD_REQUEST
-      })
+      res.json(errorResponse)
 
       return
     }
@@ -39,10 +41,30 @@ app.get('/api/author-pagination', async (req: Request, res: Response) => {
     })
   }
   catch (e) {
+    res.json(errorResponse)
+  }
+})
+
+app.get('/api/author-quotes', async (req: Request, res: Response) => {
+  try {
+    const { query } = req
+
+    if (!query.author || typeof query.author !== 'string') {
+      res.json(errorResponse)
+
+      return
+    }
+
+    const quotesData = await getQuotesByAuthor(query.author)
+
     res.json({
-      message: 'Error: something unexpected happened',
-      code: HttpCodes.BAD_REQUEST
+      author: query.author,
+      quotes: quotesData,
+      code: HttpCodes.OK
     })
+  }
+  catch (e) {
+    res.json(errorResponse)
   }
 })
 
