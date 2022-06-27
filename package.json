@@ -20,7 +20,8 @@
   "license": "MIT",
   "dependencies": {
     "axios": "0.27.2",
-    "cheerio": "1.0.0-rc.11"
+    "cheerio": "1.0.0-rc.11",
+    "express": "^4.18.1"
   },
   "devDependencies": {
     "@types/node": "18.0.0",
