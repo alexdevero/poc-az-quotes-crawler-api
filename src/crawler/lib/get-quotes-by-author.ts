@@ -5,9 +5,9 @@ import { urls } from '@data'
 
 const url = urls.quotesByAuthor
 
-export const getQuotesByAuthor = async (author?: string) => {
+export const getQuotesByAuthor = async (author: string) => {
   try {
-    const { data } = await axios.get(`${url}${author ? author : ''}`)
+    const { data } = await axios.get(`${url}${author}`)
     const $ = cheerio.load(data)
     const quotesList = $('ul.list-quotes li')
 

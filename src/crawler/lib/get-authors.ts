@@ -13,7 +13,7 @@ export type Author = {
 
 export const getAuthors = async (authorStartingLetter?: string, page?: number) => {
   try {
-    const reqUrl = authorStartingLetter ? `${urlSingle}${authorStartingLetter.toLowerCase()}/${(page || 0) > 1 ? page : ''}` : url
+    const reqUrl = authorStartingLetter ? `${urlSingle}${authorStartingLetter.toLowerCase()}/${authorStartingLetter && ((page || 0) > 1) ? page : ''}` : url
     const { data } = await axios.get(reqUrl)
     const $ = cheerio.load(data)
 
