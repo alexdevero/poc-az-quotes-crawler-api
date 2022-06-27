@@ -3,9 +3,6 @@ import * as cheerio from 'cheerio'
 
 import { urls } from '@data'
 
-const url = urls.authors
-const urlSingle = urls.authorSingle
-
 export type Author = {
   author: string;
   link?: string;
@@ -13,7 +10,7 @@ export type Author = {
 
 export const getAuthors = async (authorStartingLetter?: string, page?: number) => {
   try {
-    const reqUrl = authorStartingLetter ? `${urlSingle}${authorStartingLetter.toLowerCase()}/${authorStartingLetter && ((page || 0) > 1) ? page : ''}` : url
+    const reqUrl = authorStartingLetter ? `${urls.authorSingle}${authorStartingLetter.toLowerCase()}/${authorStartingLetter && ((page || 0) > 1) ? page : ''}` : urls.authors
     const { data } = await axios.get(reqUrl)
     const $ = cheerio.load(data)
 
