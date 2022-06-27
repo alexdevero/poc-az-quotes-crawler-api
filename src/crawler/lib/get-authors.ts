@@ -1,7 +1,7 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-import { urls } from '@data'
+import { urls } from './../../data/'
 
 export type Author = {
   author: string;
