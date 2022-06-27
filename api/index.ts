@@ -17,19 +17,29 @@ app.get('/api', async (req: Request, res: Response) => {
 
 app.get('/api/author-pagination', async (req: Request, res: Response) => {
   try {
-    const { params, body } = req
-    const paginationData = await getQuotesByAuthorPagination(params.author)
+    const { query } = req
+
+    if (!query.author || typeof query.author !== 'string') {
+      res.json({
+        message: 'Error: Author not provided in Query params',
+        code: 500
+      })
+
+      return
+    }
+
+    const paginationData = await getQuotesByAuthorPagination(query.author)
 
     res.json({
-      author: params,
-      query: JSON.stringify(req.query),
-      body: JSON.stringify(req.body),
-      numberOfPages: paginationData?.numberOfPages || 0
+      author: query.author,
+      numberOfPages: paginationData?.numberOfPages || 0,
+      code: 200
     })
   }
   catch (e) {
     res.json({
-      message: 'Sorry'
+      message: 'Error: something unexpected happened',
+      code: 500
     })
   }
 })
