@@ -17,11 +17,13 @@ app.get('/api', async (req: Request, res: Response) => {
 
 app.get('/api/author-pagination', async (req: Request, res: Response) => {
   try {
-    const { params } = req
+    const { params, body } = req
     const paginationData = await getQuotesByAuthorPagination(params.author)
 
     res.json({
-      author: params.author,
+      author: params,
+      query: JSON.stringify(req.query),
+      body: JSON.stringify(req.body),
       numberOfPages: paginationData?.numberOfPages || 0
     })
   }
