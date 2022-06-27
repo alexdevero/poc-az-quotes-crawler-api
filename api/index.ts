@@ -1,6 +1,8 @@
-const app = require('express')()
+import express, { Request, Response } from 'express'
 
-app.get('/api', (req, res) => {
+const app = express()
+
+app.get('/api', (req: Request, res: Response) => {
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate')
   res.json({
     message: 'hello'
