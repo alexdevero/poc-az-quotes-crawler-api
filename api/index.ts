@@ -55,7 +55,12 @@ app.get('/api/author-quotes', async (req: Request, res: Response) => {
       return
     }
 
-    const quotesData = await getQuotesByAuthor(query.author)
+    let page: string | undefined = undefined
+    if (query.page && typeof query.page === 'string') {
+      page = query.page
+    }
+
+    const quotesData = await getQuotesByAuthor(query.author, page)
 
     res.json({
       author: query.author,
