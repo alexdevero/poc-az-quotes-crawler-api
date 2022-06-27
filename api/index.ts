@@ -65,8 +65,7 @@ app.get('/api/author-quotes', async (req: Request, res: Response) => {
     res.json({
       author: query.author,
       page: query.page,
-      quotes: quotesData?.quotes,
-      debug: quotesData?.fnParams,
+      quotes: quotesData,
       code: HttpCodes.OK
     })
   }

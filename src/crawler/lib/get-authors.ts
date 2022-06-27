@@ -59,8 +59,6 @@ export const getAuthors = async (authorStartingLetter?: string, page?: number) =
       }
     })
 
-    console.log(authorsData)
-
     return {
       authors: authorsData,
       pages,
