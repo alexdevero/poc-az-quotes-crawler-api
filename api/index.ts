@@ -3,6 +3,7 @@ import helmet from 'helmet'
 import compression from 'compression'
 
 import { getQuotesByAuthorPagination } from './../src/crawler'
+import { HttpCodes } from '../types'
 
 const app = express()
 app.use(helmet())
@@ -11,7 +12,8 @@ app.use(compression())
 
 app.get('/api', async (req: Request, res: Response) => {
   res.json({
-    message: 'hello'
+    availableEndpoints: ['author-pagination'],
+    code: HttpCodes.BAD_REQUEST
   })
 })
 
@@ -22,7 +24,7 @@ app.get('/api/author-pagination', async (req: Request, res: Response) => {
     if (!query.author || typeof query.author !== 'string') {
       res.json({
         message: 'Error: Author not provided in Query params',
-        code: 500
+        code: HttpCodes.BAD_REQUEST
       })
 
       return
@@ -33,13 +35,13 @@ app.get('/api/author-pagination', async (req: Request, res: Response) => {
     res.json({
       author: query.author,
       numberOfPages: paginationData?.numberOfPages || 0,
-      code: 200
+      code: HttpCodes.OK
     })
   }
   catch (e) {
     res.json({
       message: 'Error: something unexpected happened',
-      code: 500
+      code: HttpCodes.BAD_REQUEST
     })
   }
 })
