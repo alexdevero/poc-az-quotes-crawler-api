@@ -1,7 +1,7 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-import { selectors, urls } from './../../data/'
+import { selectors, urls } from '@data'
 
 export const getQuotesByAuthor = async (author: string, page?: string) => {
   try {
