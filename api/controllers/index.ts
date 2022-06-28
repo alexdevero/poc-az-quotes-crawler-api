@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import { getQuotesByAuthorPagination, getQuotesByAuthor } from './../../src/crawler'
-import { HttpCodes } from '@custom-types'
+import { HttpCodes } from './../../types'
 
 const errorResponse = {
   message: 'Error: something unexpected happened',
