@@ -1,7 +1,7 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-import { urls } from './../../data/'
+import { selectors, urls } from './../../data/'
 
 export const getQuotesByAuthorPagination = async (author: string) => {
   try {
@@ -9,7 +9,7 @@ export const getQuotesByAuthorPagination = async (author: string) => {
     const { data } = await axios.get(reUrl)
     const $ = cheerio.load(data)
 
-    const paginationItems = $('.pager li')
+    const paginationItems = $(selectors.authorSinglePagination)
 
     const pages: number[] = []
     paginationItems.each((i, page) => {

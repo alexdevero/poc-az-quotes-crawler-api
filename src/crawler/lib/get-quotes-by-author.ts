@@ -1,13 +1,13 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-import { urls } from './../../data/'
+import { selectors, urls } from './../../data/'
 
 export const getQuotesByAuthor = async (author: string, page?: string) => {
   try {
     const { data } = await axios.get(`${urls.quotesByAuthor}${author}${page ? '/' + page : ''}`)
     const $ = cheerio.load(data)
-    const quotesList = $('ul.list-quotes li')
+    const quotesList = $(selectors.quotesList)
 
     const quotes: string[] = []
     quotesList.each((i, el) => {

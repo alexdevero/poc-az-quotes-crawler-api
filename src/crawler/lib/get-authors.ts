@@ -1,7 +1,7 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-import { urls } from './../../data/'
+import { urls, selectors } from './../../data/'
 
 export type Author = {
   author: string;
@@ -17,7 +17,7 @@ export const getAuthors = async (authorStartingLetter?: string, page?: number) =
     const authorsData: Author[] = []
 
     if (!authorStartingLetter) {
-      let authorsTables = $('.authors-page ul')
+      let authorsTables = $(selectors.authorsTables)
 
       authorsTables.each((i, table) => {
         const item = $(table).children('li')
@@ -35,7 +35,7 @@ export const getAuthors = async (authorStartingLetter?: string, page?: number) =
         })
       })
     } else {
-      let authors = $('.leftcol-inner .table tbody tr')
+      let authors = $(selectors.authorsList)
       authors.each((i, tr) => {
         const firstTdChild = $(tr).children('td').first().children('a')
         const firstTdChildText = firstTdChild.text()
@@ -48,7 +48,7 @@ export const getAuthors = async (authorStartingLetter?: string, page?: number) =
       })
     }
 
-    const paginationItems = $('.table + .pager li')
+    const paginationItems = $(selectors.authorsPagination)
 
     const pages: number[] = []
     paginationItems.each((i, page) => {
