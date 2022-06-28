@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { getQuotesByAuthorPagination, getQuotesByAuthor } from '@crawler'
+import { getQuotesByAuthorPagination, getQuotesByAuthor } from './../../src/crawler'
 import { HttpCodes } from '@custom-types'
 
 const errorResponse = {
